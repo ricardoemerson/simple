@@ -6,7 +6,7 @@ const sequelize = new Sequelize(databaseConfig);
 class HelloController {
   async index(req, res) {
     const data = await sequelize.query(
-      'SELECT * FROM users ORDER BY name',
+      'SELECT id, name, email, provider FROM users ORDER BY name',
       {
         type: QueryTypes.SELECT,
       },
@@ -19,7 +19,7 @@ class HelloController {
     const { id } = req.params;
 
     const data = await sequelize.query(
-      'SELECT * FROM users WHERE id = :id',
+      'SELECT id, name, email, provider FROM users WHERE id = :id',
       {
         replacements: { id },
         type: QueryTypes.SELECT,
